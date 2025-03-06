@@ -1,5 +1,6 @@
 import { useNearWallet } from '@/contexts/NearWalletContext';
 import styles from '../styles/MainLayout.module.css';
+import { useState, useEffect } from 'react';
 
 export type MenuItem = 'money' | 'product' | 'buy' | 'farm';
 
@@ -15,6 +16,21 @@ export function MainLayout({
   activeMenuItem = 'money'
 }: MainLayoutProps) {
   const wallet = useNearWallet();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setIsSidebarOpen(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleMenuItemClick = (menuItem: MenuItem) => {
     if (menuItem === 'buy') {
@@ -27,11 +43,26 @@ export function MainLayout({
     if (onMenuItemClick) {
       onMenuItemClick(menuItem);
     }
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.sidebar}>
+      {isMobile && (
+        <button 
+          className={`${styles.menuToggle} ${isSidebarOpen ? styles.active : ''}`}
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      )}
+      
+      <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
         <div className={styles.logo}>
           <img src="/ico.png" alt="CRANS Logo" />
           <h1>
@@ -122,9 +153,16 @@ export function MainLayout({
         </div>
       </div>
       
-      <div className={styles.content}>
+      <div className={`${styles.content} ${isSidebarOpen ? styles.shifted : ''}`}>
         {children}
       </div>
+
+      {isSidebarOpen && isMobile && (
+        <div 
+          className={styles.overlay} 
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 } 
