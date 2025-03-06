@@ -47,6 +47,28 @@
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Spacing for different screen sizes */
+  --spacing-mobile: 1rem;
+  --spacing-tablet: 1.5rem;
+  --spacing-desktop: 2rem;
+}
+
+/* Mobile-first breakpoints */
+:root {
+  --content-padding: var(--spacing-mobile);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --content-padding: var(--spacing-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --content-padding: var(--spacing-desktop);
+  }
 }
 
 /* Dark mode overrides - making it slightly more contrasted */
@@ -75,12 +97,21 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -91,11 +122,53 @@ body {
     rgb(var(--background-end-rgb))
   );
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.5;
+  padding: var(--content-padding);
 }
 
+/* Improve touch targets on mobile */
+button, 
+input, 
+select, 
+textarea {
+  font-size: 16px; /* Prevents zoom on focus in iOS */
+  margin: 0;
+}
+
+/* Improve link tap targets */
 a {
   color: inherit;
   text-decoration: none;
+  touch-action: manipulation;
+  padding: 0.25rem 0;
+  display: inline-block;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive text sizing */
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  p, li { font-size: 1rem; }
+}
+
+/* Improve scrolling experience */
+@media (max-width: 768px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent pull-to-refresh on mobile */
+  body {
+    overscroll-behavior-y: none;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
