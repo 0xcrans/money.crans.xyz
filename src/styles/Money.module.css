@@ -1,0 +1,218 @@
+.pairsContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #111118;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pairsTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #8a8d98;
+  font-size: 16px;
+}
+
+.errorState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #ff5e5e;
+  font-size: 16px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #8a8d98;
+  font-size: 16px;
+  text-align: center;
+}
+
+.pairsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  background-color: #1a1b23;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pairsTable th {
+  text-align: left;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8d98;
+  border-bottom: 1px solid #2d2f3b;
+  background-color: #1f2029;
+}
+
+.pairsTable td {
+  padding: 16px;
+  border-bottom: 1px solid #2d2f3b;
+  color: #ffffff;
+}
+
+.pairsTable tr:last-child td {
+  border-bottom: none;
+}
+
+.pairCell {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.pairIcons {
+  display: flex;
+  margin-right: 12px;
+}
+
+.tokenIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #3a3d4c;
+  margin-right: -8px;
+  border: 2px solid #1a1b23;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Token-specific icon backgrounds */
+.crans {
+  background-image: url('/icons/crans.svg');
+  background-color: #8a76fd;
+}
+
+.near {
+  background-image: url('/icons/near.svg');
+  background-color: #000000;
+}
+
+.sin {
+  background-image: url('/icons/sin.svg');
+  background-color: #ff9e00;
+}
+
+.pump {
+  background-image: url('/icons/pump.svg');
+  background-color: #00c04b;
+}
+
+.bd {
+  background-image: url('/icons/bd.svg');
+  background-color: #ff3e3e;
+}
+
+.shitzu {
+  background-image: url('/icons/shitzu.svg');
+  background-color: #8d8d8d;
+}
+
+.tokenIcon:last-child {
+  margin-right: 0;
+}
+
+.tokenCell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tokenRow {
+  display: flex;
+  align-items: center;
+}
+
+.tokenSymbol {
+  font-weight: 500;
+  margin-right: 8px;
+  color: #ffffff;
+  min-width: 60px;
+}
+
+.tokenAmount {
+  color: #8a8d98;
+  font-size: 14px;
+}
+
+.lpCell {
+  font-weight: 500;
+  position: relative;
+}
+
+.sharePercent {
+  color: #8a8d98;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.lockedBadge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(0, 198, 160, 0.2);
+  color: #00c6a0;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.valueCell {
+  font-weight: 500;
+  color: #00c6a0;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+}
+
+.addButton, .removeButton {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.addButton {
+  background-color: #00c6a0;
+  color: #ffffff;
+}
+
+.addButton:hover {
+  background-color: #00b090;
+}
+
+.removeButton {
+  background-color: transparent;
+  color: #ff5e5e;
+  border: 1px solid #ff5e5e;
+}
+
+.removeButton:hover {
+  background-color: rgba(255, 94, 94, 0.1);
+} 

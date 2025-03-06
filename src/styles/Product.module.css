@@ -1,0 +1,250 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #89b4fa #1e1e2e;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #1e1e2e;
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #89b4fa;
+  border-radius: 4px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #74c7ec;
+}
+
+.productDescription {
+  padding: 2rem;
+  margin-bottom: 3rem;
+  background: #1e1e2e;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: #cdd6f4;
+}
+
+.productDescription h1 {
+  font-size: 3rem;
+  color: #89b4fa;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.productDescription h2 {
+  font-size: 2rem;
+  color: #89b4fa;
+  margin: 2.5rem 0 1.5rem;
+  border-bottom: 2px solid #313244;
+  padding-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.productDescription h3 {
+  font-size: 1.5rem;
+  color: #cdd6f4;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+.productDescription h4 {
+  font-size: 1.2rem;
+  color: #89b4fa;
+  margin: 1.5rem 0 1rem;
+  font-weight: 500;
+}
+
+.productDescription p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #a6adc8;
+  margin-bottom: 1.2rem;
+}
+
+.productDescription ul {
+  list-style-type: none;
+  padding-left: 1.5rem;
+  margin: 1.2rem 0;
+}
+
+.productDescription li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #a6adc8;
+  line-height: 1.6;
+}
+
+.productDescription li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #89b4fa;
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+.mainVision, .distribution, .sourcing, .efficiency, .benefits, .technicalDetails {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: rgba(49, 50, 68, 0.3);
+  border-radius: 12px;
+  border: 1px solid #313244;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.benefitCard {
+  background: #313244;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.benefitCard h3 {
+  color: #89b4fa;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+}
+
+.benefitCard p {
+  color: #a6adc8;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.accountsInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.accountCard {
+  background: #313244;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(137, 180, 250, 0.2);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accountCard:hover {
+  border-color: #89b4fa;
+}
+
+.accountAddress {
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: #89b4fa;
+  padding: 0.5rem;
+  background: rgba(137, 180, 250, 0.1);
+  border-radius: 6px;
+  margin: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.accountLink {
+  color: #89b4fa;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(137, 180, 250, 0.3);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: rgba(137, 180, 250, 0.05);
+  width: fit-content;
+}
+
+.accountLink:hover {
+  background: rgba(137, 180, 250, 0.15);
+  border-color: #89b4fa;
+  transform: translateY(-2px);
+}
+
+.accountLink:active {
+  transform: translateY(0);
+}
+
+.reportsInfo {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: rgba(137, 180, 250, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(137, 180, 250, 0.2);
+  text-align: center;
+}
+
+.reportsInfo h3 {
+  color: #89b4fa;
+  margin-bottom: 1rem;
+}
+
+.reportsInfo p {
+  margin-bottom: 1.5rem;
+  color: #a6adc8;
+}
+
+.reportsInfo .accountLink {
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .productDescription {
+    padding: 1.5rem;
+  }
+
+  .productDescription h1 {
+    font-size: 2.2rem;
+  }
+
+  .productDescription h2 {
+    font-size: 1.8rem;
+  }
+
+  .productDescription h3 {
+    font-size: 1.3rem;
+  }
+
+  .benefitsGrid,
+  .accountsInfo {
+    grid-template-columns: 1fr;
+  }
+
+  .distributionRatio li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ratioDescription {
+    margin: 0.5rem 0 0 0;
+  }
+} 

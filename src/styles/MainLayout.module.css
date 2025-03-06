@@ -1,0 +1,189 @@
+.mainContainer {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #181825;
+  color: #cdd6f4;
+  position: relative;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1e1e2e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #313244;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.logo img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.logoLink {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoLink:hover {
+  text-decoration: underline !important;
+  opacity: 0.8;
+}
+
+.menu {
+  flex-grow: 1;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: #a6adc8;
+  background-color: transparent;
+}
+
+.menuItem:hover {
+  background-color: rgba(205, 214, 244, 0.05);
+  color: #cdd6f4;
+  transform: translateX(2px);
+}
+
+.menuItem.active {
+  background-color: rgba(137, 180, 250, 0.1);
+  color: #89b4fa;
+}
+
+.menuItemWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 2px;
+  color: inherit;
+}
+
+.menuIcon {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.menuItemDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #6c7086;
+}
+
+.menuItemDisabled:hover {
+  background-color: transparent;
+  transform: none;
+}
+
+.comingSoon {
+  font-size: 0.75rem;
+  color: #6c7086;
+  padding: 2px 8px;
+  background-color: rgba(108, 112, 134, 0.1);
+  border-radius: 4px;
+}
+
+.walletBtn {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.walletBtn button {
+  width: 100%;
+  padding: 12px;
+  background-color: rgba(137, 180, 250, 0.1);
+  color: #89b4fa;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.walletBtn button:hover {
+  background-color: rgba(137, 180, 250, 0.15);
+  transform: translateY(-1px);
+}
+
+.walletBtn a {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6c7086;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.socialLinks a:hover {
+  opacity: 1;
+}
+
+.socialLinks img {
+  width: 20px;
+  height: 20px;
+  filter: grayscale(100%) brightness(70%);
+  transition: filter 0.2s ease;
+}
+
+.socialLinks a:hover img {
+  filter: grayscale(0%) brightness(100%);
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  margin-left: 220px;
+} 

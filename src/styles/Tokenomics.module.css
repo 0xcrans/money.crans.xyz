@@ -1,0 +1,170 @@
+.tokenomicsContainer {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tokenomicsTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #cdd6f4;
+}
+
+.overviewCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #1e1e2e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a6adc8;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #cdd6f4;
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #cdd6f4;
+}
+
+.allocationSection,
+.releaseSection,
+.tokenInfoSection {
+  background-color: #1e1e2e;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pieChartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.pieChart {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #313244;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.pieSlice {
+  position: absolute;
+  height: 100%;
+  transform-origin: left;
+  left: 50%;
+  top: 0;
+}
+
+.pieChartLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legendColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.barChartContainer {
+  margin-top: 20px;
+  padding: 20px 10px;
+}
+
+.barChart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 200px;
+}
+
+.barColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.bar {
+  width: 30px;
+  background-color: #89b4fa;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transition: height 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+.barValue {
+  position: absolute;
+  top: -25px;
+  font-size: 12px;
+  color: #a6adc8;
+}
+
+.barLabel {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #a6adc8;
+}
+
+.infoGrid {
+  margin-top: 10px;
+}
+
+.infoRow {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #313244;
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+}
+
+.infoLabel {
+  flex: 0 0 180px;
+  font-weight: 500;
+  color: #a6adc8;
+}
+
+.infoValue {
+  color: #cdd6f4;
+} 

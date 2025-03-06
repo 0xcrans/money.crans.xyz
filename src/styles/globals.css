@@ -1,0 +1,105 @@
+@import 'bootstrap';
+@import 'bootstrap-icons';
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+
+  /* Base colors */
+  --foreground-rgb: 205, 214, 244;
+  --background-start-rgb: 24, 24, 37;
+  --background-end-rgb: 30, 30, 46;
+
+  /* Accent colors */
+  --primary-accent: 137, 180, 250;
+  --secondary-accent: 203, 166, 247;
+  --success-accent: 166, 227, 161;
+  --warning-accent: 249, 226, 175;
+  --error-accent: 243, 139, 168;
+
+  /* UI Elements */
+  --card-bg: 30, 30, 46;
+  --card-hover: 49, 50, 68;
+  --border-subtle: 49, 50, 68;
+  --text-muted: 166, 173, 200;
+
+  /* Gradients */
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(137, 180, 250, 0.2) 0deg,
+    rgba(203, 166, 247, 0.2) 55deg,
+    rgba(245, 194, 231, 0.2) 120deg,
+    rgba(137, 180, 250, 0.2) 160deg,
+    transparent 360deg
+  );
+  --secondary-glow: radial-gradient(
+    rgba(137, 180, 250, 0.1),
+    rgba(137, 180, 250, 0)
+  );
+
+  /* Component-specific */
+  --callout-rgb: 49, 50, 68;
+  --callout-border-rgb: 69, 71, 90;
+  --card-rgb: 49, 50, 68;
+  --card-border-rgb: 69, 71, 90;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode overrides - making it slightly more contrasted */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 205, 214, 244;
+    --background-start-rgb: 17, 17, 27;
+    --background-end-rgb: 24, 24, 37;
+
+    --primary-glow: radial-gradient(rgba(137, 180, 250, 0.3), rgba(137, 180, 250, 0));
+    --secondary-glow: linear-gradient(
+      to bottom right,
+      rgba(137, 180, 250, 0),
+      rgba(137, 180, 250, 0),
+      rgba(137, 180, 250, 0.2)
+    );
+
+    --callout-rgb: 49, 50, 68;
+    --callout-border-rgb: 69, 71, 90;
+    --card-rgb: 49, 50, 68;
+    --card-border-rgb: 69, 71, 90;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
