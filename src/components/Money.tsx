@@ -587,7 +587,7 @@ export function Money() {
                 case 'CRANS/SHITZU':
                   return {
                     href: "https://app.shitzuapes.xyz/stake",
-                    text: "💰 Stake & Earn"
+                    text: "💰 Stake & Earn With SHITZU Validator"
                   };
                 case 'CRANS/SIN':
                   return {
