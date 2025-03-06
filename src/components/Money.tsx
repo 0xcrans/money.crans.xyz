@@ -528,269 +528,131 @@ export function Money() {
   // Update the debug display for raw pool data
   if (rawPoolData.length > 0) {
     return (
-      <div style={{ 
-        padding: '20px',
-        maxWidth: '600px',
-        margin: '0 auto',
-        overflow: 'auto',
-        backgroundColor: '#1a1b26',
-        color: '#a9b1d6'
-      }}>
-        <div style={{
-          marginBottom: '20px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          padding: '15px',
-          backgroundColor: '#24283b',
-          borderRadius: '8px'
-        }}>
-          <div>
-            <div style={{ fontSize: '14px', color: '#7aa2f7' }}>Total TVL</div>
-            <div style={{ fontSize: '24px', color: '#7ee787' }}>${totalTVL}</div>
+      <div className={styles.pairsContainer}>
+        <div className={styles.statsContainer}>
+          <div className={styles.statCard}>
+            <div className={styles.statLabel}>Total TVL</div>
+            <div className={styles.statValue}>${totalTVL}</div>
           </div>
-          <div style={{ textAlign: 'center' }}>
+          <div className={styles.statCard}>
             <a
               href="https://nearblocks.io/token/crans.tkn.near?tab=holders"
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: 'none' }}
             >
-              <div style={{ fontSize: '14px', color: '#7aa2f7' }}>Holders</div>
-              <div style={{ fontSize: '24px', color: '#7ee787' }}>⧉⌝</div>
+              <div className={styles.statLabel}>Holders</div>
+              <div className={styles.statValue}>⧉⌝</div>
             </a>
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: '14px', color: '#7aa2f7' }}>CRANS Total Supply</div>
-            <div style={{ fontSize: '24px', color: '#7ee787' }}>{cransTotalSupply}</div>
+          <div className={styles.statCard}>
+            <div className={styles.statLabel}>CRANS Total Supply</div>
+            <div className={styles.statValue}>{cransTotalSupply}</div>
           </div>
         </div>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '120px 1fr 120px',
-          gap: '16px',
-          color: '#8b949e',
-          fontSize: '14px',
-          marginBottom: '15px',
-          padding: '0 10px'
-        }}>
-          <div>Pair</div>
-          <div>Token</div>
-          <div style={{ textAlign: 'right' }}>USD Value</div>
+
+        <div className={styles.poolsGrid}>
+          {rawPoolData.map((pool: any, index) => {
+            const poolData = pool.poolData;
+            if (!poolData) return null;
+
+            // Get token amounts
+            const [amount1, amount2] = poolData.amounts || [];
+            const [token1, token2] = poolData.token_account_ids || [];
+            
+            // Format amounts
+            const formattedAmount1 = formatTokenAmount(amount1, token1);
+            const formattedAmount2 = formatTokenAmount(amount2, token2);
+
+            // Get token names from the pool configuration
+            const [token1Name, token2Name] = pool.name.split('/');
+
+            // Get token metadata icons
+            const token1Metadata = tokenMetadata[token1];
+            const token2Metadata = tokenMetadata[token2];
+
+            // Pool-specific tag content
+            const getPoolTag = (poolName: string) => {
+              switch (poolName) {
+                case 'CRANS/NEAR':
+                  return {
+                    href: "https://nearblocks.io/txns/9ee8QafZ33J4aFbQh4CD2T6MKr9BNKTRLF4ckCgGvScv#execution",
+                    text: "🔒 Sep 2026"
+                  };
+                case 'CRANS/PUMPOPOLY':
+                  return {
+                    href: "https://near.pumpopoly.com/?invite=crans.near",
+                    text: "🎮 Play & Earn"
+                  };
+                case 'CRANS/SHITZU':
+                  return {
+                    href: "https://app.shitzuapes.xyz/stake",
+                    text: "💰 Stake & Earn"
+                  };
+                case 'CRANS/SIN':
+                  return {
+                    href: "https://app.survivalisnear.xyz/",
+                    text: "💎 Stake $SIN"
+                  };
+                case 'CRANS/BLACKDRAGON':
+                  return {
+                    href: "https://blackdragon.meme/whitepaper/",
+                    text: "📄 Whitepaper"
+                  };
+                default:
+                  return null;
+              }
+            };
+
+            const poolTag = getPoolTag(pool.name);
+
+            return (
+              <div key={index} className={styles.poolCard}>
+                {poolTag && (
+                  <a
+                    href={poolTag.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.poolTag}
+                  >
+                    {poolTag.text}
+                  </a>
+                )}
+                
+                <div className={styles.poolHeader}>
+                  <div className={styles.tokenIcons}>
+                    {token1Metadata?.icon && (
+                      <img 
+                        src={token1Metadata.icon} 
+                        alt={token1Name}
+                        className={styles.tokenIcon}
+                      />
+                    )}
+                    {token2Metadata?.icon && (
+                      <img 
+                        src={token2Metadata.icon} 
+                        alt={token2Name}
+                        className={styles.tokenIcon}
+                      />
+                    )}
+                  </div>
+                </div>
+
+                <div className={styles.poolInfo}>
+                  <span className={styles.tokenName}>{token1Name}</span>
+                  <span className={styles.tokenAmount}>{formattedAmount1}</span>
+                  
+                  <span className={styles.tokenName}>{token2Name}</span>
+                  <span className={styles.tokenAmount}>{formattedAmount2}</span>
+                </div>
+
+                <div className={styles.poolValue}>
+                  ${pool.usdValue}
+                </div>
+              </div>
+            );
+          })}
         </div>
-        {rawPoolData.map((pool: any, index) => {
-          const poolData = pool.poolData;
-          if (!poolData) return null;
-
-          // Get token amounts
-          const [amount1, amount2] = poolData.amounts || [];
-          const [token1, token2] = poolData.token_account_ids || [];
-          
-          // Format amounts
-          const formattedAmount1 = formatTokenAmount(amount1, token1);
-          const formattedAmount2 = formatTokenAmount(amount2, token2);
-
-          // Get token names from the pool configuration
-          const [token1Name, token2Name] = pool.name.split('/');
-
-          // Get token metadata icons
-          const token1Metadata = tokenMetadata[token1];
-          const token2Metadata = tokenMetadata[token2];
-
-          return (
-            <div key={index} style={{ 
-              display: 'grid',
-              gridTemplateColumns: '120px 1fr 120px',
-              gap: '16px',
-              padding: '10px',
-              alignItems: 'center',
-              position: 'relative',
-              ...((pool.name === 'CRANS/NEAR' || pool.name === 'CRANS/PUMPOPOLY' || pool.name === 'CRANS/SHITZU' || pool.name === 'CRANS/SIN' || pool.name === 'CRANS/BLACKDRAGON') && {
-                border: '1px solid rgba(126, 231, 135, 0.2)',
-                borderRadius: '8px',
-                margin: '12px 0'
-              })
-            }}>
-              {pool.name === 'CRANS/NEAR' && (
-                <a
-                  href="https://nearblocks.io/txns/9ee8QafZ33J4aFbQh4CD2T6MKr9BNKTRLF4ckCgGvScv#execution"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '8px',
-                    fontSize: '11px',
-                    color: '#7ee787',
-                    background: '#1a1b26',
-                    padding: '0 4px',
-                    textDecoration: 'none'
-                  }}
-                >
-                  🔒 Sep 2026
-                </a>
-              )}
-              {pool.name === 'CRANS/PUMPOPOLY' && (
-                <a
-                  href="https://near.pumpopoly.com/?invite=crans.near"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '8px',
-                    fontSize: '11px',
-                    color: '#7ee787',
-                    background: '#1a1b26',
-                    padding: '0 4px',
-                    textDecoration: 'none'
-                  }}
-                >
-                  🎮 Play & Earn
-                </a>
-              )}
-              {pool.name === 'CRANS/SHITZU' && (
-                <a
-                  href="https://app.shitzuapes.xyz/stake"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '8px',
-                    fontSize: '11px',
-                    color: '#7ee787',
-                    background: '#1a1b26',
-                    padding: '0 4px',
-                    textDecoration: 'none'
-                  }}
-                >
-                  💰 Stake & Earn With Shitzu Validator
-                </a>
-              )}
-              {pool.name === 'CRANS/SIN' && (
-                <a
-                  href="https://app.survivalisnear.xyz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '8px',
-                    fontSize: '11px',
-                    color: '#7ee787',
-                    background: '#1a1b26',
-                    padding: '0 4px',
-                    textDecoration: 'none'
-                  }}
-                >
-                  💎 Stake $SIN & Earn $SIN
-                </a>
-              )}
-              {pool.name === 'CRANS/BLACKDRAGON' && (
-                <a
-                  href="https://blackdragon.meme/whitepaper/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    position: 'absolute',
-                    top: '-8px',
-                    right: '8px',
-                    fontSize: '11px',
-                    color: '#7ee787',
-                    background: '#1a1b26',
-                    padding: '0 4px',
-                    textDecoration: 'none'
-                  }}
-                >
-                  📄 Whitepaper
-                </a>
-              )}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  position: 'relative'
-                }}>
-                  {token1Metadata?.icon && (
-                    <img 
-                      src={token1Metadata.icon} 
-                      alt={token1Name}
-                      style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        marginRight: '-8px',
-                        zIndex: 1,
-                        backgroundColor: '#30363d'
-                      }}
-                    />
-                  )}
-                  {token2Metadata?.icon && (
-                    <img 
-                      src={token2Metadata.icon} 
-                      alt={token2Name}
-                      style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: '#30363d'
-                      }}
-                    />
-                  )}
-                  {(!token1Metadata?.icon || !token2Metadata?.icon) && (
-                    <>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: '#30363d',
-                        marginRight: '-8px',
-                        zIndex: 1
-                      }}></div>
-                      <div style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        backgroundColor: '#30363d',
-                        zIndex: 0
-                      }}></div>
-                    </>
-                  )}
-                </div>
-              </div>
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px'
-              }}>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between'
-                }}>
-                  <span style={{ color: '#58a6ff' }}>{token1Name}</span>
-                  <span style={{ textAlign: 'right' }}>{formattedAmount1}</span>
-                </div>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between'
-                }}>
-                  <span style={{ color: '#58a6ff' }}>{token2Name}</span>
-                  <span style={{ textAlign: 'right' }}>{formattedAmount2}</span>
-                </div>
-              </div>
-              <div style={{
-                textAlign: 'right',
-                color: '#7ee787'
-              }}>
-                ${pool.usdValue}
-              </div>
-            </div>
-          );
-        })}
       </div>
     );
   }
