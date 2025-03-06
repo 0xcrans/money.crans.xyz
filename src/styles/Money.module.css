@@ -1,11 +1,213 @@
 .pairsContainer {
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #111118;
+  padding: 16px;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #24283b;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.statCard {
+  padding: 16px;
+  background-color: rgba(36, 40, 59, 0.5);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: #7aa2f7;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 24px;
+  color: #7ee787;
+  font-weight: 600;
+}
+
+.poolsGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.poolCard {
+  background-color: #1e1e2e;
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  border: 1px solid rgba(126, 231, 135, 0.1);
+}
+
+.poolHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tokenIcons {
+  display: flex;
+  align-items: center;
+}
+
+.tokenIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #30363d;
+}
+
+.tokenIcon:nth-child(2) {
+  margin-left: -8px;
+}
+
+.poolInfo {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.tokenName {
+  color: #58a6ff;
+  font-size: 14px;
+}
+
+.tokenAmount {
+  text-align: right;
+  font-size: 14px;
+  color: #cdd6f4;
+}
+
+.poolValue {
+  text-align: right;
+  color: #7ee787;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.poolTag {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  font-size: 11px;
+  color: #7ee787;
+  background: #1a1b26;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.poolTag:hover {
+  color: #98ee99;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .pairsContainer {
+    padding: 12px;
+  }
+
+  .statsContainer {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+
+  .statCard {
+    padding: 12px;
+  }
+
+  .statLabel {
+    font-size: 13px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .poolsGrid {
+    gap: 12px;
+  }
+
+  .poolCard {
+    padding: 12px;
+  }
+
+  .poolHeader {
+    margin-bottom: 12px;
+  }
+
+  .tokenIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .poolInfo {
+    font-size: 13px;
+  }
+
+  .tokenName {
+    font-size: 13px;
+  }
+
+  .tokenAmount {
+    font-size: 13px;
+  }
+
+  .poolValue {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .poolTag {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 380px) {
+  .pairsContainer {
+    padding: 8px;
+  }
+
+  .statsContainer {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .poolCard {
+    padding: 10px;
+  }
+
+  .tokenIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .poolInfo {
+    font-size: 12px;
+  }
+
+  .tokenName, .tokenAmount {
+    font-size: 12px;
+  }
+
+  .poolValue {
+    font-size: 14px;
+  }
 }
 
 .pairsTitle {
@@ -85,17 +287,6 @@
 .pairIcons {
   display: flex;
   margin-right: 12px;
-}
-
-.tokenIcon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: #3a3d4c;
-  margin-right: -8px;
-  border: 2px solid #1a1b23;
-  background-size: cover;
-  background-position: center;
 }
 
 /* Token-specific icon backgrounds */
