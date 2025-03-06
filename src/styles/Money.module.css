@@ -3,6 +3,9 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 16px;
+  min-height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .statsContainer {
@@ -13,6 +16,8 @@
   padding: 16px;
   background-color: #24283b;
   border-radius: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .statCard {
@@ -116,17 +121,38 @@
 @media (max-width: 768px) {
   .pairsContainer {
     padding: 12px;
+    height: auto;
+    min-height: 100%;
+    position: relative;
   }
 
   .statsContainer {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(36, 40, 59, 0.95);
+    backdrop-filter: blur(10px);
+    margin-bottom: 16px;
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 12px;
-    margin-bottom: 20px;
+  }
+
+  .poolsGrid {
+    padding-bottom: calc(var(--bottom-nav-height) + 16px);
+    display: grid;
+    gap: 12px;
+  }
+
+  .poolCard {
+    margin-bottom: 12px;
+    background-color: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(5px);
   }
 
   .statCard {
     padding: 12px;
+    background-color: rgba(36, 40, 59, 0.7);
   }
 
   .statLabel {
@@ -135,18 +161,6 @@
 
   .statValue {
     font-size: 20px;
-  }
-
-  .poolsGrid {
-    gap: 12px;
-  }
-
-  .poolCard {
-    padding: 12px;
-  }
-
-  .poolHeader {
-    margin-bottom: 12px;
   }
 
   .tokenIcon {
