@@ -68,7 +68,6 @@ export function MainLayout({
       
       <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
         <div className={styles.logo}>
-          <img src="/ico.png" alt="CRANS Logo" />
           <h1>
             <a 
               href="https://crans.xyz" 
@@ -161,6 +160,9 @@ export function MainLayout({
             >
               <img src="/git.png" alt="GitHub" />
             </a>
+          </div>
+          <div className={styles.poweredBy}>
+            Powered by AlterFund
           </div>
         </div>
       </div>
