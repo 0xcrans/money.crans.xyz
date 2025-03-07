@@ -78,7 +78,7 @@ export function Product() {
           <h2>Operational Efficiency</h2>
           <div className={styles.benefitsGrid}>
             <div className={styles.benefitCard}>
-              <h3>System Benefits</h3>
+              <h3>Benefits</h3>
               <ul>
                 <li>Enhanced liquidity across pairs</li>
                 <li>Reduced spread between LPs</li>
@@ -99,7 +99,7 @@ export function Product() {
         </section>
 
         <section className={styles.technicalDetails}>
-          <h2>Technical Implementation</h2>
+          <h2>Mainnet Implementation</h2>
           <div className={styles.accountsInfo}>
             <div className={styles.accountCard}>
               <h3>Distribution Account</h3>
