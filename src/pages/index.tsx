@@ -86,7 +86,7 @@ const HomePage: NextPage = () => {
           borderRadius: '50%',
           animation: 'spin 1s linear infinite'
         }}></div>
-        <p>Cash rules everything around me...</p>
+        <p>Cash Rules Anything Near Sight...</p>
       </div>
     );
   }
