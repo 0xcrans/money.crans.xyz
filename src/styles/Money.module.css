@@ -535,11 +535,36 @@
     padding: 16px;
   }
 
+  .statLabel {
+    font-size: 14px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
   .poolsGrid {
     gap: 16px;
   }
 
   .poolCard {
     padding: 16px;
+  }
+
+  .tokenName {
+    font-size: 14px;
+  }
+
+  .tokenAmount {
+    font-size: 14px;
+  }
+
+  .poolValue {
+    font-size: 16px;
+  }
+
+  .poolTag {
+    font-size: 12px;
+    padding: 4px 8px;
   }
 } 
