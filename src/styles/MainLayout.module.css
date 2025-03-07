@@ -247,6 +247,13 @@
     z-index: 1001;
     padding: 8px;
     backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+  }
+
+  .menuToggle.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .menuToggle span {
