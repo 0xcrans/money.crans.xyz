@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Money.module.css';
 import { POOLS, TOKENS, TOKEN_DECIMALS } from '../utils/trading-routes';
-// Import the needed SDK functions with correct names
 import { init_env, getPool } from '@ref-finance/ref-sdk';
 import { Pool } from '@ref-finance/ref-sdk/dist/types';
 import { JsonRpcProvider } from 'near-api-js/lib/providers';
@@ -577,27 +576,37 @@ export function Money() {
                 case 'CRANS/NEAR':
                   return {
                     href: "https://nearblocks.io/txns/9ee8QafZ33J4aFbQh4CD2T6MKr9BNKTRLF4ckCgGvScv#execution",
-                    text: "🔒 Sep 2026"
+                    text: "Sep 2026",
+                    icon: "🔒",
+                    className: "locked"
                   };
                 case 'CRANS/PUMPOPOLY':
                   return {
                     href: "https://near.pumpopoly.com/?invite=crans.near",
-                    text: "🎮 Play & Earn"
+                    text: "Play & Earn",
+                    icon: "🎮",
+                    className: "play"
                   };
                 case 'CRANS/SHITZU':
                   return {
                     href: "https://app.shitzuapes.xyz/stake",
-                    text: "💰 Stake & Earn With SHITZU Validator"
+                    text: "Stake & Earn",
+                    icon: "💰",
+                    className: "stake"
                   };
                 case 'CRANS/SIN':
                   return {
                     href: "https://app.survivalisnear.xyz/",
-                    text: "💎 Stake $SIN"
+                    text: "Stake $SIN",
+                    icon: "💎",
+                    className: "stake"
                   };
                 case 'CRANS/BLACKDRAGON':
                   return {
                     href: "https://blackdragon.meme/whitepaper/",
-                    text: "📄 Whitepaper"
+                    text: "Whitepaper",
+                    icon: "📄",
+                    className: "docs"
                   };
                 default:
                   return null;
@@ -608,17 +617,6 @@ export function Money() {
 
             return (
               <div key={index} className={styles.poolCard}>
-                {poolTag && (
-                  <a
-                    href={poolTag.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.poolTag}
-                  >
-                    {poolTag.text}
-                  </a>
-                )}
-                
                 <div className={styles.poolHeader}>
                   <div className={styles.tokenIcons}>
                     {token1Metadata?.icon && (
@@ -647,6 +645,17 @@ export function Money() {
                 </div>
 
                 <div className={styles.poolValue}>
+                  {poolTag && (
+                    <a
+                      href={poolTag.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${styles.poolTag} ${styles[poolTag.className]}`}
+                    >
+                      <span>{poolTag.icon}</span>
+                      {poolTag.text}
+                    </a>
+                  )}
                   ${pool.usdValue}
                 </div>
               </div>
