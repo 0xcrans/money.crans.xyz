@@ -178,12 +178,24 @@
 
   .statsContainer {
     padding: 8px;
+    padding-left: 52px;
     gap: 5px;
     margin-bottom: 10px;
   }
 
   .statCard {
     padding: 6px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .statValue {
+    font-size: 14px;
   }
 
   .poolsGrid {
@@ -234,6 +246,7 @@
 
   .statsContainer {
     padding: 6px;
+    padding-left: 48px;
     gap: 4px;
   }
 
@@ -264,6 +277,14 @@
   .poolTag {
     font-size: 8px;
     padding: 2px 4px;
+  }
+
+  .statLabel {
+    font-size: 9px;
+  }
+
+  .statValue {
+    font-size: 13px;
   }
 }
 
