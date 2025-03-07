@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   height: 100vh;
@@ -302,5 +302,34 @@
   .accountLink {
     font-size: 0.8rem;
     padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .container {
+    padding: 40px;
+  }
+
+  .productDescription {
+    padding: 2rem;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .accountsInfo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .benefitCard {
+    padding: 1.5rem;
+  }
+
+  .accountCard {
+    padding: 1.5rem;
   }
 } 
