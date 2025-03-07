@@ -77,7 +77,15 @@ export function MainLayout({
               className={styles.logoLink}
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              crans.xyz
+              <span className={styles.stockLetter}>c</span>
+              <span className={styles.stockLetter}>r</span>
+              <span className={styles.stockLetter}>a</span>
+              <span className={styles.stockLetter}>n</span>
+              <span className={styles.stockLetter}>s</span>
+              <span className={styles.stockLetter}>.</span>
+              <span className={styles.stockLetter}>x</span>
+              <span className={styles.stockLetter}>y</span>
+              <span className={styles.stockLetter}>z</span>
             </a>
           </h1>
         </div>
