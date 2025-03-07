@@ -1,6 +1,6 @@
 .pairsContainer {
   width: 100%;
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 8px;
   min-height: 100%;
@@ -45,7 +45,7 @@
 .poolsGrid {
   display: grid;
   gap: 6px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 .poolCard {
@@ -521,4 +521,25 @@
 
 .removeButton:hover {
   background-color: rgba(255, 94, 94, 0.1);
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .pairsContainer {
+    padding: 20px;
+  }
+
+  .statsContainer {
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 16px;
+  }
+
+  .poolsGrid {
+    gap: 16px;
+  }
+
+  .poolCard {
+    padding: 16px;
+  }
 } 
