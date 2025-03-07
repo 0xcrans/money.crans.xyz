@@ -90,7 +90,7 @@ export function MainLayout({
               className={`${styles.menuItem} ${activeMenuItem === 'product' ? styles.active : ''}`}
               onClick={() => handleMenuItemClick('product')}
             >
-              Product
+              Market Maker
             </li>
             <li 
               className={`${styles.menuItem} ${activeMenuItem === 'buy' ? styles.active : ''}`}
