@@ -26,19 +26,16 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
   margin-bottom: 40px;
-}
-
-.logo img {
-  width: 32px;
-  height: 32px;
+  width: 100%;
 }
 
 .logo h1 {
   font-size: 1.5rem;
   margin: 0;
   font-weight: 600;
+  text-align: center;
 }
 
 .logoLink {
@@ -47,6 +44,8 @@
   position: relative;
   padding: 2px 4px;
   border-radius: 4px;
+  width: 100%;
+  text-align: center;
 }
 
 .logoLink:hover {
@@ -56,37 +55,45 @@
 
 .stockLetter {
   display: inline-block;
-  animation: stockLetterMove 3s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.stockLetter:nth-child(1) { animation-delay: 0.0s; }
-.stockLetter:nth-child(2) { animation-delay: 0.3s; }
-.stockLetter:nth-child(3) { animation-delay: 0.6s; }
-.stockLetter:nth-child(4) { animation-delay: 0.9s; }
-.stockLetter:nth-child(5) { animation-delay: 1.2s; }
-.stockLetter:nth-child(6) { animation-delay: 1.5s; }
-.stockLetter:nth-child(7) { animation-delay: 1.8s; }
-.stockLetter:nth-child(8) { animation-delay: 2.1s; }
-.stockLetter:nth-child(9) { animation-delay: 2.4s; }
-
-@keyframes stockLetterMove {
-  0% {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-1px);
-  }
-  75% {
-    transform: translateY(1px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  animation: matrixEffect 2s linear infinite;
+  position: relative;
 }
 
 .logoLink:hover .stockLetter {
-  animation-play-state: paused;
+  animation-play-state: running;
+}
+
+.stockLetter:nth-child(1) { animation-delay: 0.0s; }
+.stockLetter:nth-child(2) { animation-delay: 0.2s; }
+.stockLetter:nth-child(3) { animation-delay: 0.4s; }
+.stockLetter:nth-child(4) { animation-delay: 0.6s; }
+.stockLetter:nth-child(5) { animation-delay: 0.8s; }
+.stockLetter:nth-child(6) { animation-delay: 1.0s; }
+.stockLetter:nth-child(7) { animation-delay: 1.2s; }
+.stockLetter:nth-child(8) { animation-delay: 1.4s; }
+.stockLetter:nth-child(9) { animation-delay: 1.6s; }
+
+@keyframes matrixEffect {
+  0% {
+    color: #cdd6f4;
+    text-shadow: none;
+  }
+  45% {
+    color: #cdd6f4;
+    text-shadow: none;
+  }
+  50% {
+    color: #7ee787;
+    text-shadow: 0 0 8px #7ee787;
+  }
+  55% {
+    color: #cdd6f4;
+    text-shadow: none;
+  }
+  100% {
+    color: #cdd6f4;
+    text-shadow: none;
+  }
 }
 
 .glowingText {
@@ -211,6 +218,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
+  margin-bottom: 24px;
 }
 
 .socialLinks a {
@@ -234,6 +242,14 @@
 
 .socialLinks a:hover img {
   filter: grayscale(0%) brightness(100%);
+}
+
+.poweredBy {
+  text-align: center;
+  color: #6c7086;
+  font-size: 0.75rem;
+  margin-bottom: 16px;
+  opacity: 0.7;
 }
 
 .content {
