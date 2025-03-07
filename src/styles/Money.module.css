@@ -174,17 +174,20 @@
 @media (max-width: 768px) {
   .pairsContainer {
     padding: 6px;
+    padding-top: 72px; /* Match the header height */
   }
 
   .statsContainer {
     padding: 8px;
-    padding-left: 52px;
     gap: 5px;
     margin-bottom: 10px;
+    background-color: rgba(36, 40, 59, 0.8);
+    backdrop-filter: blur(10px);
   }
 
   .statCard {
     padding: 6px;
+    background-color: rgba(36, 40, 59, 0.5);
   }
 
   .statLabel {
@@ -242,6 +245,7 @@
 @media (max-width: 380px) {
   .pairsContainer {
     padding: 4px;
+    padding-top: 72px; /* Keep consistent with larger mobile view */
   }
 
   .statsContainer {
