@@ -43,12 +43,65 @@
 
 .logoLink {
   cursor: pointer;
-  transition: all 0.2s ease;
+  display: inline-block;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .logoLink:hover {
-  text-decoration: underline !important;
-  opacity: 0.8;
+  background-color: rgba(137, 180, 250, 0.1);
+  color: #89b4fa;
+}
+
+.stockLetter {
+  display: inline-block;
+  animation: stockLetterMove 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.stockLetter:nth-child(1) { animation-delay: 0.0s; }
+.stockLetter:nth-child(2) { animation-delay: 0.3s; }
+.stockLetter:nth-child(3) { animation-delay: 0.6s; }
+.stockLetter:nth-child(4) { animation-delay: 0.9s; }
+.stockLetter:nth-child(5) { animation-delay: 1.2s; }
+.stockLetter:nth-child(6) { animation-delay: 1.5s; }
+.stockLetter:nth-child(7) { animation-delay: 1.8s; }
+.stockLetter:nth-child(8) { animation-delay: 2.1s; }
+.stockLetter:nth-child(9) { animation-delay: 2.4s; }
+
+@keyframes stockLetterMove {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-1px);
+  }
+  75% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logoLink:hover .stockLetter {
+  animation-play-state: paused;
+}
+
+.glowingText {
+  animation: glow 2s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(137, 180, 250, 0.1);
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(137, 180, 250, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(137, 180, 250, 0.3);
+    color: #89b4fa;
+  }
 }
 
 .menu {
