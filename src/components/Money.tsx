@@ -530,7 +530,7 @@ export function Money() {
       <div className={styles.pairsContainer}>
         <div className={styles.statsContainer}>
           <div className={styles.statCard}>
-            <div className={styles.statLabel}>Total TVL</div>
+            <div className={styles.statLabel}>Total</div>
             <div className={styles.statValue}>${totalTVL}</div>
           </div>
           <div className={styles.statCard}>
