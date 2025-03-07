@@ -173,15 +173,16 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .pairsContainer {
-    padding: 6px;
-    padding-top: 0; /* Remove top padding */
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .statsContainer {
     padding: 8px;
     gap: 5px;
-    margin-top: 72px; /* Move margin to statsContainer instead */
-    margin-bottom: 10px;
+    margin: 56px 6px 10px 6px; /* top margin matches header height, side margins for spacing */
     background-color: rgba(36, 40, 59, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 10px;
@@ -204,9 +205,10 @@
   }
 
   .poolsGrid {
-    padding-bottom: calc(var(--bottom-nav-height) + 6px);
+    padding: 0 6px calc(var(--bottom-nav-height) + 6px) 6px;
     gap: 6px;
     grid-template-columns: 1fr;
+    flex: 1;
   }
 
   .poolCard {
@@ -246,13 +248,12 @@
 /* Small mobile styles */
 @media (max-width: 380px) {
   .pairsContainer {
-    padding: 4px;
-    padding-top: 0; /* Remove top padding */
+    padding: 0;
   }
 
   .statsContainer {
     padding: 6px;
-    margin-top: 72px; /* Keep consistent with larger mobile view */
+    margin: 56px 4px 8px 4px;
     gap: 4px;
   }
 
@@ -291,6 +292,10 @@
 
   .statValue {
     font-size: 13px;
+  }
+
+  .poolsGrid {
+    padding: 0 4px calc(var(--bottom-nav-height) + 4px) 4px;
   }
 }
 
