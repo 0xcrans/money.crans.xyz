@@ -1,8 +1,8 @@
 .pairsContainer {
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 8px;
   min-height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -11,52 +11,59 @@
 .statsContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-  padding: 16px;
+  gap: 6px;
+  margin-bottom: 12px;
+  padding: 10px;
   background-color: #24283b;
-  border-radius: 12px;
+  border-radius: 10px;
   position: relative;
   z-index: 1;
 }
 
 .statCard {
-  padding: 16px;
+  padding: 10px;
   background-color: rgba(36, 40, 59, 0.5);
-  border-radius: 8px;
+  border-radius: 6px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .statLabel {
-  font-size: 14px;
+  font-size: 11px;
   color: #7aa2f7;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
 }
 
 .statValue {
-  font-size: 24px;
+  font-size: 16px;
   color: #7ee787;
   font-weight: 600;
 }
 
 .poolsGrid {
   display: grid;
-  gap: 16px;
+  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .poolCard {
   background-color: #1e1e2e;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 10px;
   position: relative;
   border: 1px solid rgba(126, 231, 135, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .poolHeader {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .tokenIcons {
@@ -65,162 +72,198 @@
 }
 
 .tokenIcon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: #30363d;
 }
 
 .tokenIcon:nth-child(2) {
-  margin-left: -8px;
+  margin-left: -6px;
 }
 
 .poolInfo {
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 8px;
+  gap: 3px;
   align-items: center;
 }
 
 .tokenName {
   color: #58a6ff;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .tokenAmount {
   text-align: right;
-  font-size: 14px;
+  font-size: 12px;
   color: #cdd6f4;
 }
 
 .poolValue {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: #7ee787;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  margin-top: 12px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(126, 231, 135, 0.1);
 }
 
 .poolTag {
-  position: absolute;
-  top: -8px;
-  right: 8px;
-  font-size: 11px;
-  color: #7ee787;
-  background: #1a1b26;
-  padding: 2px 8px;
+  font-size: 10px;
+  padding: 3px 6px;
   border-radius: 4px;
   text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
 }
 
-.poolTag:hover {
-  color: #98ee99;
+/* Tag variants */
+.poolTag.locked {
+  color: #f9e2af;
+  background: rgba(249, 226, 175, 0.1);
+  border: 1px solid rgba(249, 226, 175, 0.2);
+}
+
+.poolTag.locked:hover {
+  background: rgba(249, 226, 175, 0.15);
+  border-color: rgba(249, 226, 175, 0.3);
+}
+
+.poolTag.play {
+  color: #94e2d5;
+  background: rgba(148, 226, 213, 0.1);
+  border: 1px solid rgba(148, 226, 213, 0.2);
+}
+
+.poolTag.play:hover {
+  background: rgba(148, 226, 213, 0.15);
+  border-color: rgba(148, 226, 213, 0.3);
+}
+
+.poolTag.stake {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.1);
+  border: 1px solid rgba(243, 139, 168, 0.2);
+}
+
+.poolTag.stake:hover {
+  background: rgba(243, 139, 168, 0.15);
+  border-color: rgba(243, 139, 168, 0.3);
+}
+
+.poolTag.docs {
+  color: #89b4fa;
+  background: rgba(137, 180, 250, 0.1);
+  border: 1px solid rgba(137, 180, 250, 0.2);
+}
+
+.poolTag.docs:hover {
+  background: rgba(137, 180, 250, 0.15);
+  border-color: rgba(137, 180, 250, 0.3);
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
   .pairsContainer {
-    padding: 12px;
-    height: auto;
-    min-height: 100%;
-    position: relative;
+    padding: 6px;
   }
 
   .statsContainer {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    background-color: rgba(36, 40, 59, 0.95);
-    backdrop-filter: blur(10px);
-    margin-bottom: 16px;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .poolsGrid {
-    padding-bottom: calc(var(--bottom-nav-height) + 16px);
-    display: grid;
-    gap: 12px;
-  }
-
-  .poolCard {
-    margin-bottom: 12px;
-    background-color: rgba(30, 30, 46, 0.95);
-    backdrop-filter: blur(5px);
+    padding: 8px;
+    gap: 5px;
+    margin-bottom: 10px;
   }
 
   .statCard {
-    padding: 12px;
-    background-color: rgba(36, 40, 59, 0.7);
+    padding: 6px;
   }
 
-  .statLabel {
-    font-size: 13px;
+  .poolsGrid {
+    padding-bottom: calc(var(--bottom-nav-height) + 6px);
+    gap: 6px;
+    grid-template-columns: 1fr;
   }
 
-  .statValue {
-    font-size: 20px;
+  .poolCard {
+    padding: 8px;
+    gap: 5px;
+  }
+
+  .poolHeader {
+    margin-bottom: 5px;
   }
 
   .tokenIcon {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
   }
 
   .poolInfo {
-    font-size: 13px;
+    gap: 2px;
   }
 
-  .tokenName {
-    font-size: 13px;
-  }
-
-  .tokenAmount {
-    font-size: 13px;
+  .tokenName, .tokenAmount {
+    font-size: 11px;
   }
 
   .poolValue {
-    font-size: 15px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-top: 5px;
+    padding-top: 5px;
   }
 
   .poolTag {
-    font-size: 10px;
-    padding: 1px 6px;
+    font-size: 9px;
+    padding: 2px 5px;
   }
 }
 
 /* Small mobile styles */
 @media (max-width: 380px) {
   .pairsContainer {
-    padding: 8px;
+    padding: 4px;
   }
 
   .statsContainer {
-    padding: 8px;
-    gap: 8px;
+    padding: 6px;
+    gap: 4px;
   }
 
   .poolCard {
-    padding: 10px;
+    padding: 6px;
+    gap: 4px;
   }
 
   .tokenIcon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   .poolInfo {
-    font-size: 12px;
+    gap: 2px;
   }
 
   .tokenName, .tokenAmount {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .poolValue {
-    font-size: 14px;
+    font-size: 12px;
+    margin-top: 4px;
+    padding-top: 4px;
+  }
+
+  .poolTag {
+    font-size: 8px;
+    padding: 2px 4px;
   }
 }
 
