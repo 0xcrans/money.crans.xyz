@@ -18,8 +18,6 @@ export function MainLayout({
   const wallet = useNearWallet();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -33,21 +31,6 @@ export function MainLayout({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < lastScrollY || currentScrollY < 50) {
-        setIsMenuVisible(true);
-      } else {
-        setIsMenuVisible(false);
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const handleMenuItemClick = (menuItem: MenuItem) => {
     if (menuItem === 'buy') {
@@ -68,15 +51,19 @@ export function MainLayout({
   return (
     <div className={styles.mainContainer}>
       {isMobile && (
-        <button 
-          className={`${styles.menuToggle} ${isSidebarOpen ? styles.active : ''} ${!isMenuVisible ? styles.hidden : ''}`}
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <>
+          <div className={styles.mobileHeader}>
+            <button 
+              className={`${styles.menuToggle} ${isSidebarOpen ? styles.active : ''}`}
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              aria-label="Toggle menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </>
       )}
       
       <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
