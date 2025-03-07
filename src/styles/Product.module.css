@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   height: 100vh;
@@ -227,8 +227,7 @@
 /* Mobile styles */
 @media (max-width: 768px) {
   .container {
-    padding: 16px;
-    padding-top: 16px;
+    padding: 64px 16px 16px 16px;
   }
 
   .productDescription {
@@ -271,8 +270,7 @@
 /* Small mobile styles */
 @media (max-width: 380px) {
   .container {
-    padding: 12px;
-    padding-top: 65px;
+    padding: 64px 12px 12px 12px;
   }
 
   .productDescription {
