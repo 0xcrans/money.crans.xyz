@@ -69,23 +69,7 @@ export function MainLayout({
       <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
         <div className={styles.logo}>
           <h1>
-            <a 
-              href="https://crans.xyz" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={styles.logoLink}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <span className={styles.stockLetter}>c</span>
-              <span className={styles.stockLetter}>r</span>
-              <span className={styles.stockLetter}>a</span>
-              <span className={styles.stockLetter}>n</span>
-              <span className={styles.stockLetter}>s</span>
-              <span className={styles.stockLetter}>.</span>
-              <span className={styles.stockLetter}>x</span>
-              <span className={styles.stockLetter}>y</span>
-              <span className={styles.stockLetter}>z</span>
-            </a>
+            
           </h1>
         </div>
         
@@ -138,7 +122,25 @@ export function MainLayout({
         </nav>
 
         <div className={styles.walletBtn}>
-          <div className={styles.socialLinks}>
+          <div style={{ 
+            textAlign: 'center', 
+            marginBottom: '20px', 
+            fontSize: '14px', 
+            opacity: '0.8',
+            paddingBottom: '15px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            display: 'flex',
+            justifyContent: 'center'
+          }}>
+            <a 
+              href="https://crans.xyz" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.logoLink}
+              style={{ display: 'inline-block', letterSpacing: '-0.5px' }}
+            ><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>c</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>r</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>a</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>n</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>s</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>.</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>x</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>y</span><span className={styles.stockLetter} style={{ margin: 0, padding: 0 }}>z</span></a>
+          </div>
+          <div className={styles.socialLinks} style={{ marginBottom: '20px' }}>
             <a 
               href="https://t.me/PaulCrans" 
               target="_blank" 
@@ -161,7 +163,10 @@ export function MainLayout({
               <img src="/git.png" alt="GitHub" />
             </a>
           </div>
-          <div className={styles.poweredBy}>
+          <div className={styles.poweredBy} style={{ 
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            paddingTop: '15px'
+          }}>
             Powered by AlterFund
           </div>
         </div>
