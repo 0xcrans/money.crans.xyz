@@ -72,6 +72,33 @@ const getNearPriceInUSDC = async (): Promise<Big> => {
   }
 };
 
+// Get pool data including token reserves
+const getPoolData = async (poolId: number): Promise<any> => {
+  try {
+    const provider = new JsonRpcProvider({ url: 'https://free.rpc.fastnear.com' });
+    const args_base64 = Buffer.from(JSON.stringify({ pool_id: poolId })).toString('base64');
+    
+    const response: any = await provider.query({
+      request_type: 'call_function',
+      account_id: 'v2.ref-finance.near',
+      method_name: 'get_pool',
+      args_base64,
+      finality: 'final'
+    });
+    
+    if (response && response.result) {
+      const resultBytes = Buffer.from(response.result);
+      const resultText = new TextDecoder().decode(resultBytes);
+      return JSON.parse(resultText);
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Error in getPoolData:', error);
+    return null;
+  }
+};
+
 interface PriceData {
   pair: string;
   price: string;
@@ -163,34 +190,117 @@ export function CransPrice() {
                   price: cransPriceInUSD.toFixed(6)
                 };
               }
-            } else {
-              const tokenForOneNear = await getReturn({
-                pool_id: tokenNearPool,
-                token_in: TOKENS.NEAR,
-                token_out: intermediateToken,
-                amount_in: '1000000000000000000000000' // 1 NEAR
-              });
-
-              if (tokenForOneNear) {
-                const cransForOneToken = await getReturn({
-                  pool_id: pool,
-                  token_in: intermediateToken,
-                  token_out: TOKENS.CRANS,
-                  amount_in: tokenForOneNear
-                });
-
-                if (cransForOneToken) {
-                  const tokenDecimals = TOKEN_DECIMALS[intermediateToken];
-                  const cransDecimals = TOKEN_DECIMALS[TOKENS.CRANS];
-                  
-                  const cransPerToken = new Big(cransForOneToken).div(new Big(10).pow(cransDecimals));
-                  const cransPriceInUSD = nearPrice.div(cransPerToken);
-                  
-                  return {
-                    pair: name,
-                    price: cransPriceInUSD.toFixed(6)
-                  };
+            } else if (intermediateToken === TOKENS.BD) {
+              try {
+                // Get NEAR price in USD
+                const usdcNearPool = await getPoolData(4512); // NEAR-USDC pool
+                if (!usdcNearPool || !usdcNearPool.token_account_ids || usdcNearPool.token_account_ids.length < 2) {
+                  return null;
                 }
+                
+                // Get near-bd pool data
+                const nearBdPool = await getPoolData(tokenNearPool);
+                if (!nearBdPool || !nearBdPool.token_account_ids || nearBdPool.token_account_ids.length < 2) {
+                  return null;
+                }
+                
+                // Get crans-bd pool data
+                const cransBdPool = await getPoolData(pool);
+                if (!cransBdPool || !cransBdPool.token_account_ids || cransBdPool.token_account_ids.length < 2) {
+                  return null;
+                }
+                
+                // Identify token positions in each pool
+                const nearBdNearIndex = nearBdPool.token_account_ids.findIndex((id: string) => id === TOKENS.NEAR);
+                const nearBdBdIndex = nearBdPool.token_account_ids.findIndex((id: string) => id === TOKENS.BD);
+                
+                const cransBdBdIndex = cransBdPool.token_account_ids.findIndex((id: string) => id === TOKENS.BD);
+                const cransBdCransIndex = cransBdPool.token_account_ids.findIndex((id: string) => id === TOKENS.CRANS);
+                
+                if (nearBdNearIndex === -1 || nearBdBdIndex === -1 || cransBdBdIndex === -1 || cransBdCransIndex === -1) {
+                  return null;
+                }
+                
+                // Calculate prices based on reserves
+                const nearReserve = new Big(nearBdPool.amounts[nearBdNearIndex]);
+                const bdReserve = new Big(nearBdPool.amounts[nearBdBdIndex]);
+                const bdPerNear = bdReserve.div(nearReserve);
+                
+                const bdReserveInCransPool = new Big(cransBdPool.amounts[cransBdBdIndex]);
+                const cransReserve = new Big(cransBdPool.amounts[cransBdCransIndex]);
+                
+                // Calculate CRANS per BD
+                const cransPerBd = cransReserve.div(bdReserveInCransPool);
+                
+                // Calculate BD price in USD using NEAR price
+                const bdInNear = nearReserve.div(bdReserve);
+                const bdPriceInUsd = nearPrice.mul(bdInNear);
+                
+                // Calculate CRANS price in USD
+                const cransPriceInUSD = bdPriceInUsd.div(cransPerBd);
+                
+                return {
+                  pair: name,
+                  price: cransPriceInUSD.toFixed(6)
+                };
+              } catch (err) {
+                console.error("Error calculating CRANS/BD price using reserves:", err);
+                return null;
+              }
+            } else {
+              // For all other pairs (SIN, PUMPOPOLY, SHITZU), use pool reserves approach
+              try {
+                // Get token-NEAR pool data
+                const tokenNearPoolData = await getPoolData(tokenNearPool);
+                if (!tokenNearPoolData || !tokenNearPoolData.token_account_ids || tokenNearPoolData.token_account_ids.length < 2) {
+                  return null;
+                }
+                
+                // Get CRANS-token pool data
+                const cransTokenPoolData = await getPoolData(pool);
+                if (!cransTokenPoolData || !cransTokenPoolData.token_account_ids || cransTokenPoolData.token_account_ids.length < 2) {
+                  return null;
+                }
+                
+                // Identify token positions in token-NEAR pool
+                const tokenNearNearIndex = tokenNearPoolData.token_account_ids.findIndex((id: string) => id === TOKENS.NEAR);
+                const tokenNearTokenIndex = tokenNearPoolData.token_account_ids.findIndex((id: string) => id === intermediateToken);
+                
+                // Identify token positions in CRANS-token pool
+                const cransTokenTokenIndex = cransTokenPoolData.token_account_ids.findIndex((id: string) => id === intermediateToken);
+                const cransTokenCransIndex = cransTokenPoolData.token_account_ids.findIndex((id: string) => id === TOKENS.CRANS);
+                
+                if (tokenNearNearIndex === -1 || tokenNearTokenIndex === -1 || 
+                    cransTokenTokenIndex === -1 || cransTokenCransIndex === -1) {
+                  return null;
+                }
+                
+                // Get reserves from token-NEAR pool
+                const nearReserve = new Big(tokenNearPoolData.amounts[tokenNearNearIndex]);
+                const tokenReserve = new Big(tokenNearPoolData.amounts[tokenNearTokenIndex]);
+                
+                // Get reserves from CRANS-token pool
+                const tokenReserveInCransPool = new Big(cransTokenPoolData.amounts[cransTokenTokenIndex]);
+                const cransReserve = new Big(cransTokenPoolData.amounts[cransTokenCransIndex]);
+                
+                // Calculate token per NEAR and CRANS per token
+                const tokenPerNear = tokenReserve.div(nearReserve);
+                const cransPerToken = cransReserve.div(tokenReserveInCransPool);
+                
+                // Calculate token price in USD
+                const tokenInNear = nearReserve.div(tokenReserve);
+                const tokenPriceInUsd = nearPrice.mul(tokenInNear);
+                
+                // Calculate CRANS price in USD
+                const cransPriceInUSD = tokenPriceInUsd.div(cransPerToken);
+                
+                return {
+                  pair: name,
+                  price: cransPriceInUSD.toFixed(6)
+                };
+              } catch (err) {
+                console.error(`Error calculating price for ${name} using reserves:`, err);
+                return null;
               }
             }
             return null;
