@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/Money.module.css';
 import { POOLS, TOKENS, TOKEN_DECIMALS } from '../utils/trading-routes';
+// Import the needed SDK functions with correct names
 import { init_env, getPool } from '@ref-finance/ref-sdk';
 import { Pool } from '@ref-finance/ref-sdk/dist/types';
 import { JsonRpcProvider } from 'near-api-js/lib/providers';
@@ -434,20 +435,50 @@ export function Money() {
           console.log('PUMP price in USD:', pumpPriceInUSD.toString());
         }
 
-        // Get BD price in NEAR from BD/NEAR pool
-        const bdForOneNear = await getReturn({
-          pool_id: POOLS.BD_NEAR,
-          token_in: TOKENS.NEAR,
-          token_out: TOKENS.BD,
-          amount_in: '1000000000000000000000000' // 1 NEAR
+        // Get BD price using CRANS/BD pool first
+        const cransForOneBd = await getReturn({
+          pool_id: POOLS.CRANS_BD,
+          token_in: TOKENS.BD,
+          token_out: TOKENS.CRANS,
+          amount_in: '1000000000000000000000000' // 1 BD
         });
+
+        // Debug log for BD/NEAR pool data
+        const bdNearPoolData = await getPoolData(POOLS.BD_NEAR);
+        console.log('BD/NEAR Pool Data:', bdNearPoolData);
+
+        // Debug log for CRANS/BD pool data
+        const cransBdPoolData = await getPoolData(POOLS.CRANS_BD);
+        console.log('CRANS/BD Pool Data:', cransBdPoolData);
         
-        if (bdForOneNear) {
-          const bdPerNear = new Big(bdForOneNear).div(new Big(10).pow(TOKEN_DECIMALS[TOKENS.BD]));
-          const bdPriceInUSD = nearPrice.div(bdPerNear);
-          tokenPricesUSD.set(TOKENS.BD, bdPriceInUSD);
-          console.log('BD per NEAR:', bdPerNear.toString());
-          console.log('BD price in USD:', bdPriceInUSD.toString());
+        if (cransForOneBd) {
+          const cransPerBd = new Big(cransForOneBd).div(new Big(10).pow(TOKEN_DECIMALS[TOKENS.CRANS]));
+          // Since we already have CRANS price in USD, we can calculate BD price
+          const cransPriceUSD = tokenPricesUSD.get(TOKENS.CRANS);
+          if (cransPriceUSD) {
+            const bdPriceInUSD = cransPriceUSD.mul(cransPerBd);
+            tokenPricesUSD.set(TOKENS.BD, bdPriceInUSD);
+            console.log('CRANS per BD:', cransPerBd.toString());
+            console.log('BD price in USD:', bdPriceInUSD.toString());
+          }
+        }
+
+        // Fallback to BD/NEAR pool if CRANS/BD calculation fails
+        if (!tokenPricesUSD.has(TOKENS.BD)) {
+          const bdForOneNear = await getReturn({
+            pool_id: POOLS.BD_NEAR,
+            token_in: TOKENS.NEAR,
+            token_out: TOKENS.BD,
+            amount_in: '1000000000000000000000000' // 1 NEAR
+          });
+          
+          if (bdForOneNear) {
+            const bdPerNear = new Big(bdForOneNear).div(new Big(10).pow(TOKEN_DECIMALS[TOKENS.BD]));
+            const bdPriceInUSD = nearPrice.div(bdPerNear);
+            tokenPricesUSD.set(TOKENS.BD, bdPriceInUSD);
+            console.log('BD per NEAR:', bdPerNear.toString());
+            console.log('BD price in USD:', bdPriceInUSD.toString());
+          }
         }
 
         // Get SHITZU price in NEAR from SHITZU/NEAR pool
@@ -530,7 +561,7 @@ export function Money() {
       <div className={styles.pairsContainer}>
         <div className={styles.statsContainer}>
           <div className={styles.statCard}>
-            <div className={styles.statLabel}>Total</div>
+            <div className={styles.statLabel}>Total TVL</div>
             <div className={styles.statValue}>${totalTVL}</div>
           </div>
           <div className={styles.statCard}>
