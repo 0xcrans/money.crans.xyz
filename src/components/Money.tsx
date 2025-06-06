@@ -747,7 +747,30 @@ export function Money() {
       <h2 className={styles.pairsTitle}></h2>
       
       {isLoading ? (
-        <div className={styles.loadingState}>Loading pairs data...</div>
+        <div style={{ 
+          backgroundColor: '#181825',
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '20px',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 1000
+        }}>
+          <div style={{
+            width: '40px',
+            height: '40px',
+            border: '4px solid #cdd6f4',
+            borderTop: '4px solid #181825',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }}></div>
+          <p>Cash rules everything around me...</p>
+        </div>
       ) : error ? (
         <div className={styles.errorState}>Error: {error}</div>
       ) : pairs.length === 0 ? (
