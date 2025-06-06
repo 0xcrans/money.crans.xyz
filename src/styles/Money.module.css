@@ -113,8 +113,8 @@
 }
 
 .poolTag {
-  font-size: 10px;
-  padding: 3px 6px;
+  font-size: 9px;
+  padding: 2px 4px;
   border-radius: 4px;
   text-decoration: none;
   white-space: nowrap;
@@ -174,16 +174,17 @@
 @media (max-width: 768px) {
   .pairsContainer {
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .statsContainer {
-    padding: 8px;
-    gap: 8px;
-    margin: 64px 6px 6px 6px;
+    padding: 6px;
+    margin: 4px 4px 4px 4px;
+    gap: 6px;
     background-color: rgba(36, 40, 59, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 12px;
@@ -216,9 +217,8 @@
     padding: 0 6px calc(var(--bottom-nav-height) + 6px) 6px;
     gap: 6px;
     grid-template-columns: 1fr;
-    overflow-y: auto;
-    flex: 1;
     margin-top: 6px;
+    flex-shrink: 0;
   }
 
   .poolCard {
@@ -266,6 +266,16 @@
     padding: 4px 8px;
     border-radius: 6px;
     font-weight: 500;
+  }
+
+  .buyCransButton {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .githubLinks {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -566,5 +576,178 @@
   .poolTag {
     font-size: 12px;
     padding: 4px 8px;
+  }
+}
+
+/* Buy CRANS Section */
+.buyCransSection {
+  margin: 20px 0 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.buyCransButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #7aa2f7, #89b4fa);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.buyCransButton:hover {
+  background: linear-gradient(135deg, #89b4fa, #7aa2f7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(122, 162, 247, 0.3);
+}
+
+.rheaIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(126, 231, 135, 0.1);
+}
+
+.footerContent {
+  text-align: center;
+}
+
+.footerContent p {
+  color: #7aa2f7;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.githubLinks {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.githubLink {
+  color: #58a6ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.githubLink:hover {
+  color: #7ee787;
+}
+
+.githubIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* CRANS Price Section */
+.cransPriceSection {
+  background-color: #1e1e2e;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(126, 231, 135, 0.1);
+}
+
+.cransPriceTitle {
+  color: #7aa2f7;
+  margin-bottom: 15px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cransPriceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px;
+  justify-content: center;
+}
+
+.cransPriceCard {
+  background-color: #24283b;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid rgba(126, 231, 135, 0.05);
+  transition: border-color 0.2s ease;
+}
+
+.cransPriceCard:hover {
+  border-color: rgba(126, 231, 135, 0.15);
+}
+
+.cransPricePair {
+  color: #58a6ff;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cransPriceValue {
+  color: #7ee787;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .cransPriceSection {
+    margin-bottom: 6px;
+    padding: 12px;
+    background-color: rgba(30, 30, 46, 0.95);
+    border-radius: 12px;
+    border: 1px solid rgba(126, 231, 135, 0.15);
+  }
+
+  .cransPriceGrid {
+    gap: 6px;
+  }
+
+  .cransPriceCard {
+    padding: 10px;
+    background-color: rgba(36, 40, 59, 0.7);
+    border-radius: 8px;
+  }
+
+  .cransPricePair {
+    font-size: 11px;
+  }
+
+  .cransPriceValue {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cransPriceSection {
+    padding: 10px;
+  }
+
+  .cransPriceCard {
+    padding: 8px;
+  }
+
+  .cransPricePair {
+    font-size: 10px;
+  }
+
+  .cransPriceValue {
+    font-size: 12px;
   }
 } 
