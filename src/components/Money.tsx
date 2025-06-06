@@ -6,6 +6,7 @@ import { init_env, getPool } from '@ref-finance/ref-sdk';
 import { Pool } from '@ref-finance/ref-sdk/dist/types';
 import { JsonRpcProvider } from 'near-api-js/lib/providers';
 import { Big } from 'big.js';
+import { CransPrice } from './CransPrice';
 
 // Add USDC token and pool definition
 const USDC = '17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1';
@@ -581,6 +582,8 @@ export function Money() {
           </div>
         </div>
 
+        <CransPrice />
+
         <div className={styles.poolsGrid}>
           {rawPoolData.map((pool: any, index) => {
             const poolData = pool.poolData;
@@ -693,6 +696,48 @@ export function Money() {
             );
           })}
         </div>
+
+        <div className={styles.buyCransSection}>
+          <a 
+            href="https://dex.rhea.finance/#near|crans.tkn.near" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.buyCransButton}
+          >
+            <img src="/icons/rhea.jpg" alt="Rhea" className={styles.rheaIcon} />
+            Buy $CRANS
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        </div>
+
+        <footer className={styles.footer}>
+          <div className={styles.footerContent}>
+            <div className={styles.githubLinks}>
+              <a 
+                href="https://github.com/0xcrans" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.githubLink}
+              >
+                <img src="/git.png" alt="GitHub" className={styles.githubIcon} />
+                @0xcrans
+              </a>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
