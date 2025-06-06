@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { POOLS, TOKENS, TOKEN_DECIMALS } from '../utils/trading-routes';
 import { JsonRpcProvider } from 'near-api-js/lib/providers';
 import { Big } from 'big.js';
+import styles from '../styles/Money.module.css';
 
 const getReturn = async (args: {
   pool_id: number;
@@ -325,45 +326,25 @@ export function CransPrice() {
   }, []);
 
   if (isLoading) {
-    return <div style={{ textAlign: 'center', padding: '20px', color: '#a9b1d6' }}>Loading prices...</div>;
+    return <div className={styles.cransPriceSection} style={{ textAlign: 'center', color: '#a9b1d6' }}>Loading prices...</div>;
   }
 
   if (error) {
-    return <div style={{ textAlign: 'center', padding: '20px', color: '#f7768e' }}>Error: {error}</div>;
+    return <div className={styles.cransPriceSection} style={{ textAlign: 'center', color: '#f7768e' }}>Error: {error}</div>;
   }
 
   return (
-    <div style={{
-      backgroundColor: '#1a1b26',
-      padding: '20px',
-      borderRadius: '8px',
-      marginBottom: '20px'
-    }}>
-      <h3 style={{
-        color: '#7aa2f7',
-        marginBottom: '15px',
-        fontSize: '16px',
-        textAlign: 'center'
-      }}>
+    <div className={styles.cransPriceSection}>
+      <h3 className={styles.cransPriceTitle}>
         CRANS Price Across Pairs
       </h3>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '10px',
-        justifyContent: 'center'
-      }}>
+      <div className={styles.cransPriceGrid}>
         {prices.map((price, index) => (
-          <div key={index} style={{
-            backgroundColor: '#24283b',
-            padding: '12px',
-            borderRadius: '6px',
-            textAlign: 'center'
-          }}>
-            <div style={{ color: '#c0caf5', marginBottom: '4px', fontSize: '14px' }}>
+          <div key={index} className={styles.cransPriceCard}>
+            <div className={styles.cransPricePair}>
               {price.pair}
             </div>
-            <div style={{ color: '#7ee787', fontSize: '16px', fontWeight: 'bold' }}>
+            <div className={styles.cransPriceValue}>
               ${price.price}
             </div>
           </div>
