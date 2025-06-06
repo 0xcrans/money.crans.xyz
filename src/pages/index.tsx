@@ -15,9 +15,9 @@ const HomePage: NextPage = () => {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.style.color = '#cdd6f4';
-    document.body.style.overflow = 'hidden'; // Prevent scrollbars
+    document.body.style.overflow = 'auto'; // Allow scrolling for single page
     document.body.style.width = '100vw'; // Ensure full viewport width
-    document.body.style.height = '100vh'; // Ensure full viewport height
+    document.body.style.minHeight = '100vh'; // Change to minHeight to allow content expansion
     
     // Apply styles to all potential container elements
     const styleFullWidth = `
@@ -50,7 +50,7 @@ const HomePage: NextPage = () => {
       document.body.style.color = '';
       document.body.style.overflow = '';
       document.body.style.width = '';
-      document.body.style.height = '';
+      document.body.style.minHeight = '';
       
       // Remove the appended style element
       document.head.removeChild(styleElement);
@@ -86,7 +86,7 @@ const HomePage: NextPage = () => {
           borderRadius: '50%',
           animation: 'spin 1s linear infinite'
         }}></div>
-        <p>Cash Rules Anything Near Sight...</p>
+        <p>Cash rules everything around me...</p>
       </div>
     );
   }
@@ -121,8 +121,7 @@ const HomePage: NextPage = () => {
       padding: 0,
       color: '#cdd6f4',
       border: 'none',
-      boxSizing: 'border-box',
-      overflow: 'hidden'
+      boxSizing: 'border-box'
     }}>
       <AppController />
     </div>
