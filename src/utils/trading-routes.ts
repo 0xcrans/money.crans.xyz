@@ -10,6 +10,8 @@ export const POOLS = {
   PUMP_NEAR: 3066,       // PUMP/NEAR pool
   CRANS_SIN: 5584,       // CRANS/SIN pool
   CRANS_PUMP: 5718,      // CRANS/PUMP pool
+  CRANS_1170: 6538,      // CRANS/SHIT pool
+  SHIT_NEAR: 5767,       // SHIT/NEAR pool
   STNEAR_NEAR: 535       // stNEAR/NEAR pool
 };
 
@@ -20,6 +22,7 @@ export const TOKENS = {
   NEAR: "wrap.near",
   SIN: "sin-339.meme-cooking.near",
   PUMP: "token.pumpopoly.near",
+  MEME1170: "shit-1170.meme-cooking.near",
   STNEAR: "meta-pool.near"
 };
 
@@ -30,6 +33,7 @@ export const TOKEN_DECIMALS = {
   [TOKENS.NEAR]: 24,
   [TOKENS.SIN]: 18,
   [TOKENS.PUMP]: 24,
+  [TOKENS.MEME1170]: 18, // 1170.MEME has 18 decimals (same as SIN)
   [TOKENS.STNEAR]: 24
 };
 
