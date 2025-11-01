@@ -170,6 +170,12 @@ export function CransPrice() {
             pool: POOLS.CRANS_SHITZU,
             tokenNearPool: POOLS.SHITZU_NEAR,
             intermediateToken: TOKENS.SHITZU
+          },
+          { 
+            name: 'CRANS/SHIT', 
+            pool: POOLS.CRANS_1170,
+            tokenNearPool: POOLS.SHIT_NEAR,
+            intermediateToken: TOKENS.MEME1170
           }
         ];
 
