@@ -329,6 +329,7 @@ export function Money() {
           { id: POOLS.CRANS_PUMP, name: 'CRANS/PUMPOPOLY', token1: TOKENS.CRANS, token2: TOKENS.PUMP },
           { id: POOLS.CRANS_BD, name: 'CRANS/BLACKDRAGON', token1: TOKENS.CRANS, token2: TOKENS.BD },
           { id: POOLS.CRANS_SHITZU, name: 'CRANS/SHITZU', token1: TOKENS.CRANS, token2: TOKENS.SHITZU },
+          { id: POOLS.CRANS_1170, name: 'CRANS/SHIT', token1: TOKENS.CRANS, token2: TOKENS.MEME1170 },
         ];
 
         // Fetch pool data first to get token addresses
@@ -498,6 +499,22 @@ export function Money() {
           console.log('SHITZU price in USD:', shitzuPriceInUSD.toString());
         }
 
+        // Get SHIT price in NEAR from SHIT/NEAR pool
+        const shitForOneNear = await getReturn({
+          pool_id: POOLS.SHIT_NEAR,
+          token_in: TOKENS.NEAR,
+          token_out: TOKENS.MEME1170,
+          amount_in: '1000000000000000000000000' // 1 NEAR
+        });
+        
+        if (shitForOneNear) {
+          const shitPerNear = new Big(shitForOneNear).div(new Big(10).pow(TOKEN_DECIMALS[TOKENS.MEME1170]));
+          const shitPriceInUSD = nearPrice.div(shitPerNear);
+          tokenPricesUSD.set(TOKENS.MEME1170, shitPriceInUSD);
+          console.log('SHIT per NEAR:', shitPerNear.toString());
+          console.log('SHIT price in USD:', shitPriceInUSD.toString());
+        }
+
         // Process pool data with metadata
         const processedPoolData = poolDataResults
           .map(({ pool, data }) => {
@@ -641,6 +658,13 @@ export function Money() {
                     text: "Whitepaper",
                     icon: "📄",
                     className: "docs"
+                  };
+                case 'CRANS/SHIT':
+                  return {
+                    href: "https://t.me/huggiesdotnear",
+                    text: "Join $SHIT",
+                    icon: "💩",
+                    className: "community"
                   };
                 default:
                   return null;
