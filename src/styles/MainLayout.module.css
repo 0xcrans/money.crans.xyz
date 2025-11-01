@@ -252,6 +252,29 @@
   opacity: 0.7;
 }
 
+.joinButton {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background-color: rgba(245, 194, 231, 0.15);
+  border: 1px solid rgba(245, 194, 231, 0.3);
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  color: #f5c2e7;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.joinButton:hover {
+  background-color: rgba(245, 194, 231, 0.25);
+  border-color: rgba(245, 194, 231, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(245, 194, 231, 0.2);
+}
+
 .content {
   flex-grow: 1;
   padding: 20px;
