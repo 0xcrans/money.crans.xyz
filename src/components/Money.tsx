@@ -751,7 +751,7 @@ export function Money() {
           <div className={styles.footerContent}>
             <div className={styles.githubLinks}>
               <a 
-                href="https://github.com/0xcrans" 
+                href="https://github.com/cranspaul" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className={styles.githubLink}
