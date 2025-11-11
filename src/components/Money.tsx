@@ -721,32 +721,6 @@ export function Money() {
           })}
         </div>
 
-        <div className={styles.buyCransSection}>
-          <a 
-            href="https://dex.rhea.finance/#near|crans.tkn.near" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={styles.buyCransButton}
-          >
-            <img src="/icons/rhea.jpg" alt="Rhea" className={styles.rheaIcon} />
-            Buy $CRANS
-            <svg 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </a>
-        </div>
-
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
             <div className={styles.githubLinks}>
