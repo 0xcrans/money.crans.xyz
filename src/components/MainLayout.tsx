@@ -156,7 +156,7 @@ export function MainLayout({
               <img src="/x.png" alt="X (Twitter)" />
             </a>
             <a 
-              href="https://github.com/0xcrans" 
+              href="https://github.com/cranspaul" 
               target="_blank" 
               rel="noopener noreferrer"
             >
