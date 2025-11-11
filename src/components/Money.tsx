@@ -757,7 +757,7 @@ export function Money() {
                 className={styles.githubLink}
               >
                 <img src="/git.png" alt="GitHub" className={styles.githubIcon} />
-                @0xcrans
+                @cranspaul
               </a>
             </div>
           </div>
